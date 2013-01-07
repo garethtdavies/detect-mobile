@@ -11,12 +11,12 @@
  */
  
 $plugin_info = array(
-						'pi_name'			=> 'Detect Mobile',
-						'pi_version'		=> '1.0',
-						'pi_author'			=> 'Gareth Davies',
-						'pi_author_url'		=> 'http://www.garethtdavies.com',
-						'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
-						'pi_usage'			=> Detect_mobile::usage()
+					'pi_name'			=> 'Detect Mobile',
+					'pi_version'		=> '1.0',
+					'pi_author'			=> 'Gareth Davies',
+					'pi_author_url'		=> 'http://www.garethtdavies.com',
+					'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
+					'pi_usage'			=> Detect_mobile::usage()
 					);
 
 
@@ -189,8 +189,7 @@ class Detect_mobile {
         {else}
         	I am not a mobile device
         {/if}
-        
-    	<?php
+        <?php
         $buffer = ob_get_contents();
         ob_end_clean();
 
