@@ -23,7 +23,7 @@ Check if any mobile device
 
 Conditional check for a mobile device
 {if 'exp:detect_mobile:ismobile'}
-	I am a mobile device
+    I am a mobile device
 {else}
 	I am not a mobile device
 {/if}
@@ -39,3 +39,4 @@ Conditional check
 {else}
 	I am not a mobile device
 {/if}
+    
