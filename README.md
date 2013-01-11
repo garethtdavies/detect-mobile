@@ -24,7 +24,7 @@ Check if phone
         
 Conditional check for a mobile device
 
-{if 'exp:detect_mobile:ismobile'}
+{if '{exp:detect_mobile:ismobile}'}
 	I am a mobile device
 {else}
 	I am not a mobile device
@@ -52,9 +52,9 @@ Check for device type
 
 Conditional check
 
-{if 'exp:detect_mobile:type' == "tablet"}
+{if '{exp:detect_mobile:type}' == "tablet"}
 	I am a tablet
-{elseif 'exp:detect_mobile:type' == "phone"}
+{elseif '{exp:detect_mobile:type}' == "phone"}
 	I am a mobile phone
 {else}
 	I am not a mobile device
