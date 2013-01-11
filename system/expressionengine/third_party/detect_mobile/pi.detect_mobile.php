@@ -12,7 +12,7 @@
  
 $plugin_info = array(
 					'pi_name'			=> 'Detect Mobile',
-					'pi_version'		=> '1.0.1',
+					'pi_version'		=> '1.0.2',
 					'pi_author'			=> 'Gareth Davies',
 					'pi_author_url'		=> 'http://www.garethtdavies.com',
 					'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
@@ -55,6 +55,39 @@ class Detect_mobile {
 	public function ismobile()
 	{
 		$this->isMobile ? $this->return_data = TRUE : $this->return_data = FALSE;
+		return $this->return_data;
+	}
+	
+	/**
+     * isnotmobile function
+	 * This function simply returns true or false depending on whether a mobile is detected
+     */
+	 
+	public function isnotmobile()
+	{
+		$this->isMobile ? $this->return_data = FALSE : $this->return_data = TRUE;
+		return $this->return_data;
+	}
+	
+	/**
+     * istablet function
+	 * This function simply returns true or false depending on whether a tablet is detected
+     */
+	 
+	public function istablet()
+	{
+		$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
+		return $this->return_data;
+	}
+	
+	/**
+     * isphone function
+	 * This function simply returns true or false depending on whether a phone and not tablet is detected
+     */
+	 
+	public function isphone()
+	{
+		$this->isMobile && !$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
 		return $this->return_data;
 	}
 	
@@ -156,6 +189,25 @@ class Detect_mobile {
         Basic Usage
         =============
         
+        Check if any mobile device
+        {exp:detect_mobile:ismobile} - returns true or false
+        
+        Check if not a mobile device
+        {exp:detect_mobile:isnotmobile}
+        
+        Check if tablet
+        {exp:detect_mobile:istablet}
+        
+        Check if phone
+        {exp:detect_mobile:isphone}
+        
+        Conditional check for a mobile device
+        {if 'exp:detect_mobile:ismobile'}
+        	I am a mobile device
+        {else}
+        	I am not a mobile device
+        {/if}
+        
         Redirect any mobile device including tablets
         {exp:detect_mobile:redirect location="mobile.mysite.com"}
         
@@ -167,16 +219,6 @@ class Detect_mobile {
         
         Seperate locations for tablets and mobiles
         {exp:detect_mobile tablet_location="tablet.mysite.com" location="mobile.mysite.com"}
-        
-        Check if any mobile device
-        {exp:detect_mobile:ismobile} - returns true or false
-        
-        Conditional check for a mobile device
-        {if 'exp:detect_mobile:ismobile'}
-        	I am a mobile device
-        {else}
-        	I am not a mobile device
-        {/if}
         
         Check for device type
         {exp:detect_mobile:type} - returns phone, tablet or none
