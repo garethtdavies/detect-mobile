@@ -37,11 +37,11 @@ class Detect_mobile {
         $this->EE =& get_instance();
 		
 		//Load the Mobile Detect Class
-		$this->EE->load->library( 'Detect_mobile_detect' );
+		$this->EE->load->library( 'Mobile_detecter' );
 		
 		//Perform the device detection
-		$this->isTablet = $this->EE->mobile_detect->isTablet();
-		$this->isMobile = $this->EE->mobile_detect->isMobile();
+		$this->isTablet = $this->EE->mobile_detecter->isTablet();
+		$this->isMobile = $this->EE->mobile_detecter->isMobile();
 			
     }
 	
@@ -204,7 +204,7 @@ class Detect_mobile {
         Conditional check for a mobile device
         {if '{exp:detect_mobile:ismobile}'}
         	I am a mobile device
-        {else}
+        {if:else}
         	I am not a mobile device
         {/if}
         
