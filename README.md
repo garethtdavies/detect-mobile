@@ -28,7 +28,7 @@ Basic Usage
 
     {if '{exp:detect_mobile:ismobile}'}
         I am a mobile device
-    {else}	
+    {if:else}	
         I am not a mobile device
     {/if}
         
