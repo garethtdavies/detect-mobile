@@ -12,7 +12,7 @@
  
 $plugin_info = array(
 					'pi_name'			=> 'Detect Mobile',
-					'pi_version'		=> '1.0.3',
+					'pi_version'		=> '1.0.4',
 					'pi_author'			=> 'Gareth Davies',
 					'pi_author_url'		=> 'http://www.garethtdavies.com',
 					'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
@@ -37,7 +37,7 @@ class Detect_mobile {
         $this->EE =& get_instance();
 		
 		//Load the Mobile Detect Class
-		$this->EE->load->library( 'Mobile_detect' );
+		$this->EE->load->library( 'Detect_mobile' );
 		
 		//Perform the device detection
 		$this->isTablet = $this->EE->mobile_detect->isTablet();
