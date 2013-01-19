@@ -32,7 +32,7 @@
  * @version     2.5.3 (GitHub Release)
  */
 
-class Detect_mobile {
+class Detect_mobile_detect {
 
     // External info.
     protected $userAgent = null;

@@ -37,7 +37,7 @@ class Detect_mobile {
         $this->EE =& get_instance();
 		
 		//Load the Mobile Detect Class
-		$this->EE->load->library( 'Detect_mobile' );
+		$this->EE->load->library( 'Detect_mobile_detect' );
 		
 		//Perform the device detection
 		$this->isTablet = $this->EE->mobile_detect->isTablet();
