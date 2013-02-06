@@ -58,8 +58,8 @@ Basic Usage
 
     {if '{exp:detect_mobile:type}' == "tablet"}	
         I am a tablet
-    {elseif '{exp:detect_mobile:type}' == "phone"}	
+    {if:elseif '{exp:detect_mobile:type}' == "phone"}	
         I am a mobile phone
-    {else}
+    {if:else}
         I am not a mobile device
     {/if}
