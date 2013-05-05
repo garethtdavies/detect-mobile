@@ -12,7 +12,7 @@
  
 $plugin_info = array(
 					'pi_name'			=> 'Detect Mobile',
-					'pi_version'		=> '1.0.5',
+					'pi_version'		=> '1.0.6',
 					'pi_author'			=> 'Gareth Davies',
 					'pi_author_url'		=> 'http://www.garethtdavies.com',
 					'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
@@ -226,9 +226,9 @@ class Detect_mobile {
         Conditional check
         {if '{exp:detect_mobile:type}' == "tablet"}
         	I am a tablet
-        {elseif '{exp:detect_mobile:type}' == "phone"}
+        {if:elseif '{exp:detect_mobile:type}' == "phone"}
         	I am a mobile phone
-        {else}
+        {if:else}
         	I am not a mobile device
         {/if}
         <?php
