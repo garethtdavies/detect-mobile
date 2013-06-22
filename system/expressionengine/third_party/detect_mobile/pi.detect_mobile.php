@@ -1,6 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
+ * MIT License
+ * ===========
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *
  * Detect Mobile Plugin for ExpressionEngine 2
  *
  * @package     ExpressionEngine
@@ -9,15 +32,15 @@
  * @copyright   Copyright (c) 2013
  * @link        http://www.garethtdavies.com
  */
- 
+
 $plugin_info = array(
-					'pi_name'			=> 'Detect Mobile',
-					'pi_version'		=> '1.0.6',
-					'pi_author'			=> 'Gareth Davies',
-					'pi_author_url'		=> 'http://www.garethtdavies.com',
-					'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
-					'pi_usage'			=> Detect_mobile::usage()
-					);
+	'pi_name'			=> 'Detect Mobile',
+	'pi_version'		=> '1.0.7',
+	'pi_author'			=> 'Gareth Davies',
+	'pi_author_url'		=> 'http://www.garethtdavies.com',
+	'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
+	'pi_usage'			=> Detect_mobile::usage()
+	);
 
 
 class Detect_mobile {
@@ -32,9 +55,9 @@ class Detect_mobile {
      * Constructor
      */
 
-    public function __construct()
-    {
-        $this->EE =& get_instance();
+	public function __construct()
+	{
+		$this->EE =& get_instance();
 		
 		//Load the Mobile Detect Class
 		$this->EE->load->library( 'Mobile_detecter' );
@@ -42,8 +65,8 @@ class Detect_mobile {
 		//Perform the device detection
 		$this->isTablet = $this->EE->mobile_detecter->isTablet();
 		$this->isMobile = $this->EE->mobile_detecter->isMobile();
-			
-    }
+
+	}
 	
 	// --------------------------------------------------------------------
 
@@ -51,7 +74,7 @@ class Detect_mobile {
      * ismobile function
 	 * This function simply returns true or false depending on whether a mobile is detected
      */
-	 
+
 	public function ismobile()
 	{
 		$this->isMobile ? $this->return_data = TRUE : $this->return_data = FALSE;
@@ -62,7 +85,7 @@ class Detect_mobile {
      * isnotmobile function
 	 * This function simply returns true or false depending on whether a mobile is detected
      */
-	 
+
 	public function isnotmobile()
 	{
 		$this->isMobile ? $this->return_data = FALSE : $this->return_data = TRUE;
@@ -73,7 +96,7 @@ class Detect_mobile {
      * istablet function
 	 * This function simply returns true or false depending on whether a tablet is detected
      */
-	 
+
 	public function istablet()
 	{
 		$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
@@ -84,7 +107,7 @@ class Detect_mobile {
      * isphone function
 	 * This function simply returns true or false depending on whether a phone and not tablet is detected
      */
-	 
+
 	public function isphone()
 	{
 		$this->isMobile && !$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
@@ -97,7 +120,7 @@ class Detect_mobile {
      * type function
 	 * This function simply returns the type of the device
      */
-	 
+
 	public function type()
 	{	
 		if ( $this->isTablet )
@@ -123,7 +146,7 @@ class Detect_mobile {
      * redirect function
 	 * This function simply redirects the user to the location parameter specified using ExpressionEngine redirect method
      */
-	 
+
 	public function redirect()
 	{
 		//Retreieve the plugin parameters
@@ -180,63 +203,63 @@ class Detect_mobile {
      * @access  public
      * @return  string
      */
-    public static function usage()
-    {
-     	ob_start();  ?>
+	public static function usage()
+	{
+		ob_start();  ?>
 
 		Lightweight PHP plugin for EE2 that detects a mobile browser using the PHP Detect Mobile class (http://mobiledetect.net/)
 		
-        Basic Usage
-        =============
-        
-        Check if any mobile device
-        {exp:detect_mobile:ismobile} - returns true or false
-        
-        Check if not a mobile device
-        {exp:detect_mobile:isnotmobile}
-        
-        Check if tablet
-        {exp:detect_mobile:istablet}
-        
-        Check if phone
-        {exp:detect_mobile:isphone}
-        
-        Conditional check for a mobile device
-        {if '{exp:detect_mobile:ismobile}'}
-        	I am a mobile device
-        {if:else}
-        	I am not a mobile device
-        {/if}
-        
-        Redirect any mobile device including tablets
-        {exp:detect_mobile:redirect location="mobile.mysite.com"}
-        
-        Redirect all non-tablet mobile devices
-		{exp:detect_mobile:redirect location="mobile.mysite.com" tablet="no"}
-        
-        Redirect just tablets and not mobiles
-        {exp:detect_mobile location="tablet.mysite.com" mobile="no"}
-        
-        Seperate locations for tablets and mobiles
-        {exp:detect_mobile tablet_location="tablet.mysite.com" location="mobile.mysite.com"}
-        
-        Check for device type
-        {exp:detect_mobile:type} - returns phone, tablet or none
-        
-        Conditional check
-        {if '{exp:detect_mobile:type}' == "tablet"}
-        	I am a tablet
-        {if:elseif '{exp:detect_mobile:type}' == "phone"}
-        	I am a mobile phone
-        {if:else}
-        	I am not a mobile device
-        {/if}
-        <?php
-        $buffer = ob_get_contents();
-        ob_end_clean();
+		Basic Usage
+		=============
 
-        return $buffer;
-    }
+		Check if any mobile device
+		{exp:detect_mobile:ismobile} - returns true or false
+
+		Check if not a mobile device
+		{exp:detect_mobile:isnotmobile}
+
+		Check if tablet
+		{exp:detect_mobile:istablet}
+
+		Check if phone
+		{exp:detect_mobile:isphone}
+
+		Conditional check for a mobile device
+		{if '{exp:detect_mobile:ismobile}'}
+		I am a mobile device
+		{if:else}
+		I am not a mobile device
+		{/if}
+
+		Redirect any mobile device including tablets
+		{exp:detect_mobile:redirect location="mobile.mysite.com"}
+
+		Redirect all non-tablet mobile devices
+		{exp:detect_mobile:redirect location="mobile.mysite.com" tablet="no"}
+
+		Redirect just tablets and not mobiles
+		{exp:detect_mobile location="tablet.mysite.com" mobile="no"}
+
+		Seperate locations for tablets and mobiles
+		{exp:detect_mobile tablet_location="tablet.mysite.com" location="mobile.mysite.com"}
+
+		Check for device type
+		{exp:detect_mobile:type} - returns phone, tablet or none
+
+		Conditional check
+		{if '{exp:detect_mobile:type}' == "tablet"}
+		I am a tablet
+		{if:elseif '{exp:detect_mobile:type}' == "phone"}
+		I am a mobile phone
+		{if:else}
+		I am not a mobile device
+		{/if}
+		<?php
+		$buffer = ob_get_contents();
+		ob_end_clean();
+
+		return $buffer;
+	}
     // END
 }
 
