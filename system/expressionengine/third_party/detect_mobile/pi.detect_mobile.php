@@ -35,7 +35,7 @@
 
 $plugin_info = array(
 	'pi_name'			=> 'Detect Mobile',
-	'pi_version'		=> '1.0.7',
+	'pi_version'		=> '1.0.8',
 	'pi_author'			=> 'Gareth Davies',
 	'pi_author_url'		=> 'http://www.garethtdavies.com',
 	'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
@@ -45,7 +45,6 @@ $plugin_info = array(
 
 class Detect_mobile {
 	
-	public $return_data = "";
 	private $isTablet = "";
 	private $isMobile = "";
 	
@@ -66,6 +65,9 @@ class Detect_mobile {
 		$this->isTablet = $this->EE->mobile_detecter->isTablet();
 		$this->isMobile = $this->EE->mobile_detecter->isMobile();
 
+		//Add Session for redirection block
+		$this->EE->session->set_cache('mobile_detect', 'noMobile', false);
+
 	}
 	
 	// --------------------------------------------------------------------
@@ -77,8 +79,7 @@ class Detect_mobile {
 
 	public function ismobile()
 	{
-		$this->isMobile ? $this->return_data = TRUE : $this->return_data = FALSE;
-		return $this->return_data;
+		return $this->isMobile;
 	}
 	
 	/**
@@ -88,8 +89,7 @@ class Detect_mobile {
 
 	public function isnotmobile()
 	{
-		$this->isMobile ? $this->return_data = FALSE : $this->return_data = TRUE;
-		return $this->return_data;
+		return !$this->isMobile;
 	}
 	
 	/**
@@ -99,8 +99,7 @@ class Detect_mobile {
 
 	public function istablet()
 	{
-		$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
-		return $this->return_data;
+		return $this->isTablet;
 	}
 	
 	/**
@@ -110,8 +109,7 @@ class Detect_mobile {
 
 	public function isphone()
 	{
-		$this->isMobile && !$this->isTablet ? $this->return_data = TRUE : $this->return_data = FALSE;
-		return $this->return_data;
+		return ($this->isMobile && !$this->isTablet);
 	}
 	
 	// --------------------------------------------------------------------
@@ -125,19 +123,16 @@ class Detect_mobile {
 	{	
 		if ( $this->isTablet )
 		{
-			$this->return_data = "tablet";
+			return "tablet";
 		}
 		elseif ( $this->isMobile )
 		{
-			$this->return_data = "phone";
+			return "phone";
 		}
 		else
 		{
-			$this->return_data = "none";	
+			return "none";	
 		}
-		
-		return $this->return_data;
-		
 	}
 	
 	// --------------------------------------------------------------------
@@ -154,6 +149,15 @@ class Detect_mobile {
 		$tablet_location = $this->EE->TMPL->fetch_param('tablet_location');
 		$tablet = strtolower($this->EE->TMPL->fetch_param('tablet'));
 		$mobile = strtolower($this->EE->TMPL->fetch_param('mobile'));
+
+
+
+
+		$redirect_blocked = $this->EE->input->get('noMobile', $this->EE->session->cache('mobile_detect', 'noMobile'));
+		$this->EE->session->set_cache('mobile_detect', 'noMobile', $redirect_blocked);
+		if ($redirect_blocked) {
+			return;
+		}
 		
 		if( !empty( $location ) )
 		{
