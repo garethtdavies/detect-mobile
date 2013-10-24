@@ -114,6 +114,18 @@ class Detect_mobile {
 		return $this->return_data;
 	}
 	
+	 
+    /**
+     * isnotphone function
+     * This function simply returns true or false depending on whether a phone and not tablet is detected
+     */
+ 
+    public function isnotphone()
+    {
+        $this->isMobile && !$this->isTablet ? $this->return_data = FALSE : $this->return_data = TRUE;
+        return $this->return_data;
+    }
+	
 	// --------------------------------------------------------------------
 	
 	/**
