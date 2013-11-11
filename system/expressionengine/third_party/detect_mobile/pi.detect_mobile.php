@@ -35,7 +35,7 @@
 
 $plugin_info = array(
 	'pi_name'			=> 'Detect Mobile',
-	'pi_version'		=> '1.0.7',
+	'pi_version'		=> '1.0.8',
 	'pi_author'			=> 'Gareth Davies',
 	'pi_author_url'		=> 'http://www.garethtdavies.com',
 	'pi_description'	=> 'Plugin that detects a mobile browser using the PHP Detect Mobile class',
