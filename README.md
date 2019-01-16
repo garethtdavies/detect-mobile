@@ -4,6 +4,8 @@ Detect Mobile
 Lightweight PHP plugin for EE5 that detects a mobile browser using the [PHP Mobile Detect class](http://mobiledetect.net/). 
 Contains a bundled version of **2.8.33**. For EE2 support see the [EE2 tagged release](https://github.com/garethtdavies/detect-mobile/releases/tag/ee2).
 
+To install simply copy the `detect_mobile` directory to `system/user/addons` and install the add-on via the [Add-On manager](https://docs.expressionengine.com/latest/cp/addons/index.html).
+
 Basic Usage
 =============
 
