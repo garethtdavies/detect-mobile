@@ -1,7 +1,7 @@
 Detect Mobile
 =============
 
-Lightweight PHP plugin for EE2 that detects a mobile browser using the PHP Detect Mobile class (http://mobiledetect.net/)
+Lightweight PHP plugin for EE5 that detects a mobile browser using the PHP Detect Mobile class (http://mobiledetect.net/). For EE2 support see the EE2 tagged release.
 
 Basic Usage
 =============
@@ -24,14 +24,16 @@ Basic Usage
 
 ```{exp:detect_mobile:isphone}```
         
-###Conditional check for a mobile device
+### Conditional check for a mobile device
 
+```
     {if '{exp:detect_mobile:ismobile}'}
         I am a mobile device
     {if:else}	
         I am not a mobile device
     {/if}
-        
+```
+
 **Redirect any mobile device including tablets**
 
 ```{exp:detect_mobile:redirect location="mobile.mysite.com"}```
@@ -54,8 +56,9 @@ Basic Usage
 
 *returns phone, tablet or none*
 
-###Conditional check for device type
+### Conditional check for device type
 
+```
     {if '{exp:detect_mobile:type}' == "tablet"}	
         I am a tablet
     {if:elseif '{exp:detect_mobile:type}' == "phone"}	
@@ -63,3 +66,4 @@ Basic Usage
     {if:else}
         I am not a mobile device
     {/if}
+```    
