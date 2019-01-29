@@ -37,6 +37,12 @@
 
 class Detect_mobile
 {
+    public static $name         = 'Detect mobile';
+    public static $version      = '2.0.0';
+    public static $author       = 'Gareth Davies';
+    public static $author_url   = 'https://garethtdavies.com';
+    public static $description  = 'Plugin that detects a mobile browser using the PHP Detect Mobile class';
+    public static $typography   = FALSE;
 
     private $isTabletDetected = false;
     private $isMobileDetected = false;
@@ -176,6 +182,75 @@ class Detect_mobile
             $this->isTabletDetected = ee()->mobile_detect->isTablet();
             $this->isMobileDetected = ee()->mobile_detect->isMobile();
         }
+    }
+
+    /**
+     * Usage
+     *
+     * This function describes how the plugin is used.
+     *
+     * @access  public
+     * @return  string
+     */
+    public static function usage()
+    {
+        ob_start(); ?>
+
+        Lightweight PHP plugin for EE3 that detects a mobile browser using the PHP Detect Mobile class (http://mobiledetect.net/)
+
+        Basic Usage
+        =============
+
+        Check if any mobile device
+        {exp:detect_mobile:ismobile} - returns true or false
+
+        Check if not a mobile device
+        {exp:detect_mobile:isnotmobile}
+
+        Check if tablet
+        {exp:detect_mobile:istablet}
+
+        Check if phone
+        {exp:detect_mobile:isphone}
+
+        Check if not a phone
+        {exp:detect_mobile:isnotphone}
+
+        Conditional check for a mobile device
+        {if '{exp:detect_mobile:ismobile}'}
+        I am a mobile device
+        {if:else}
+        I am not a mobile device
+        {/if}
+
+        Redirect any mobile device including tablets
+        {exp:detect_mobile:redirect location="mobile.mysite.com"}
+
+        Redirect all non-tablet mobile devices
+        {exp:detect_mobile:redirect location="mobile.mysite.com" tablet="no"}
+
+        Redirect just tablets and not mobiles
+        {exp:detect_mobile location="tablet.mysite.com" mobile="no"}
+
+        Seperate locations for tablets and mobiles
+        {exp:detect_mobile tablet_location="tablet.mysite.com" location="mobile.mysite.com"}
+
+        Check for device type
+        {exp:detect_mobile:type} - returns phone, tablet or none
+
+        Conditional check
+        {if '{exp:detect_mobile:type}' == "tablet"}
+        I am a tablet
+        {if:elseif '{exp:detect_mobile:type}' == "phone"}
+        I am a mobile phone
+        {if:else}
+        I am not a mobile device
+        {/if}
+        <?php
+        $buffer = ob_get_contents();
+        ob_end_clean();
+
+        return $buffer;
     }
 
 }
